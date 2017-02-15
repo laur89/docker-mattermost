@@ -44,7 +44,7 @@ match the one you used when creating the db table & user)
       -e INVITE_SALT=OVERRIDE_ME \
       -e PWD_RESET_SALT=OVERRIDE_ME \
       -e AT_REST_ENCRYPT_KEY=OVERRIDE_ME \
-      -v /path/on/host/to-installation-dir:/mattermost \
+      -v /path/on/host/to-data-dir:/mattermost \
       --link db \
       layr/docker-mattermost -- setup-mattermost
 
@@ -57,7 +57,7 @@ variable `AUTOSTART=true` is set.** A reasonable docker command would be
     docker run -d \
       --name mattermost \
       -p 8065:8065 \
-      -v /path/on/host/to-installation-dir:/mattermost \
+      -v /path/on/host/to-data-dir:/mattermost \
       -e AUTOSTART=true \
       --link db \
       layr/docker-mattermost

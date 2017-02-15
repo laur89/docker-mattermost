@@ -24,6 +24,12 @@ validate() {
         val="$(eval echo "\$$i")"
         [[ -z "$val" ]] && fail "[$i] env var is not defined"
     done
+
+    for i in \
+            nc \
+                ; do
+        command -v "$i" > /dev/null 2>&1 || fail "[$i] not installed"
+    done
 }
 
 
