@@ -46,18 +46,6 @@ setup_config() {
 }
 
 
-setup_service_runfile() {
-    local file
-
-    readonly file=/etc/service/mattermost/run
-
-    check_is_file "$file"
-
-    sed -Ei "s/DB_HOST/$DB_HOST/" "$file" || fail
-    sed -Ei "s/DB_PORT/$DB_PORT/" "$file" || fail
-}
-
-
 create_dirs() {
 
     mkdir -p /mattermost/{data,config} || fail "dirs creation failed"
@@ -81,6 +69,5 @@ fail() {
 validate
 create_dirs
 setup_config
-setup_service_runfile
 
 exit 0

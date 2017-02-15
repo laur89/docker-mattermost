@@ -5,6 +5,7 @@ readonly LOG=/var/log/mattermost.log
 DB_HOST=''  # will be parsed from config
 DB_PORT=''  # will be parsed from config
 
+# defines global DB_HOST & DB_PORT
 define_db_connection_details() {
     local db_host_and_port config
 
@@ -49,8 +50,4 @@ sleep 2  # Wait to avoid "panic: Failed to open sql connection pq: the database 
 "$MM_EXEC" >> "$LOG" 2>&1
 
 exit 0
-
-
-
-
 
