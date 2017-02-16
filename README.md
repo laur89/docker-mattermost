@@ -46,7 +46,7 @@ match the one you used when creating the db table & user)
       -e AT_REST_ENCRYPT_KEY=OVERRIDE_ME \
       -v /path/on/host/to-data-dir:/mattermost \
       --link db \
-      layr/docker-mattermost -- setup-mattermost
+      layr/mattermost -- setup-mattermost
 
 ## Running
 
@@ -60,6 +60,6 @@ variable `AUTOSTART=true` is set.** A reasonable docker command would be
       -v /path/on/host/to-data-dir:/mattermost \
       -e AUTOSTART=true \
       --link db \
-      layr/docker-mattermost
+      layr/mattermost
 
 For unraid users: this is the command that should to be converted into a Docker template.
