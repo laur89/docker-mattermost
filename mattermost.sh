@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 readonly MM_EXEC=/opt/mattermost/bin/platform
 readonly LOG=/var/log/mattermost.log
@@ -12,6 +12,7 @@ wait_for_db() {
 
         readonly config='/mattermost/config/config.json'
 
+        [[ -f "$config" ]] || fail "[$config] is not a valid file"
         db_host_and_port="$(grep -Po '^\s*"DataSource":.*@tcp\(\K\w+:\d+(?=\).*$)' "$config")" || fail "grepping db data from config file [$config] failed"
         IFS=':' read -r db_host db_port <<< "$db_host_and_port"
         [[ -z "$db_host" || -z "$db_port" ]] && fail "couldn't parse either db hostname or port"

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # https://docs.mattermost.com/install/prod-debian.html
 #
@@ -37,7 +37,7 @@ setup_config() {
     check_is_file "$CONFIG_TMPLATE"
     echo -e "Configure database connection..."
 
-    cp "$CONFIG_TMPLATE" "$CONFIG" || fail "copying config template failed"
+    cp -- "$CONFIG_TMPLATE" "$CONFIG" || fail "copying config template failed"
 
     sed -Ei "s/DB_HOST/$DB_HOST/" "$CONFIG" || fail
     sed -Ei "s/DB_PORT/$DB_PORT/" "$CONFIG" || fail
@@ -54,7 +54,7 @@ setup_config() {
 
 create_dirs() {
 
-    mkdir -p /mattermost/{data,config} || fail "dirs creation failed"
+    mkdir -p -- /mattermost/{data,config} || fail "dirs creation failed"
 }
 
 
