@@ -24,6 +24,8 @@ wait_for_db() {
         sleep 2
     done
 
+    echo "Connection to [$db_host:$db_port] established"
+
     return 0
 }
 
