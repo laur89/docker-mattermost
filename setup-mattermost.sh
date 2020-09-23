@@ -17,7 +17,6 @@ validate() {
 
     for i in \
             PUBLIC_LINK_SALT \
-            INVITE_SALT \
             AT_REST_ENCRYPT_KEY \
                 ; do
         val="$(eval echo "\$$i")"
@@ -25,7 +24,7 @@ validate() {
     done
 
     for i in \
-            nc pgrep \
+            jq nc pgrep tee \
                 ; do
         command -v "$i" > /dev/null 2>&1 || fail "[$i] not installed"
     done
@@ -45,14 +44,13 @@ setup_config() {
     sed -Ei "s/DB_NAME/$DB_NAME/" "$CONFIG" || fail
 
     sed -Ei "s/PUBLIC_LINK_SALT/$PUBLIC_LINK_SALT/" "$CONFIG" || fail
-    sed -Ei "s/INVITE_SALT/$INVITE_SALT/" "$CONFIG" || fail
     sed -Ei "s/AT_REST_ENCRYPT_KEY/$AT_REST_ENCRYPT_KEY/" "$CONFIG" || fail
 }
 
 
 create_dirs() {
 
-    mkdir -p -- /mattermost/{data,config} || fail "dirs creation failed"
+    mkdir -p -- /mattermost/{data,config,logs,plugins,client/plugins} || fail "dirs creation failed"
 }
 
 

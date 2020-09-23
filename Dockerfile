@@ -10,6 +10,7 @@ RUN apt-get update && \
     apt-get install --no-install-recommends -y \
         curl \
         netcat \
+        jq \
         unattended-upgrades && \
     update-locale LANG=C.UTF-8
 

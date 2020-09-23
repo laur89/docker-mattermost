@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
 
+readonly LOG_TIMESTAMP_FORMAT='+%Y-%m-%d %H:%M'
+
+MM_CONFIG=${MM_CONFIG:-/mattermost/config/config.json}
 readonly MM_EXEC=/opt/mattermost/bin/mattermost
-readonly LOG=/var/log/mattermost.log
+
+LOG="$(jq -r '.LogSettings.FileLocation' "$MM_CONFIG")"
+[[ -z "$LOG" || "$LOG" == null ]] && LOG=/mattermost/logs
+LOG+='/stdout.log'
 
 
 wait_for_db() {
@@ -19,12 +25,12 @@ wait_for_db() {
     }
 
     __parse_db_connection_details
-    echo "Wait until database [$db_host:$db_port] is ready..."
+    log "Wait until database [$db_host:$db_port] is ready..."
     until nc -z "$db_host" "$db_port"; do
         sleep 2
     done
 
-    echo "Connection to [$db_host:$db_port] established"
+    log "Connection to db @ [$db_host:$db_port] established"
 
     return 0
 }
@@ -35,12 +41,24 @@ stop_server() {
 }
 
 fail() {
-    local msg
-    readonly msg="    ERROR: $1"
-
-    echo -e "\n\n${msg}\n\n"
-    echo -e "$msg" >> "$LOG"
+    err "$1"
     exit 1
+}
+
+
+log() {
+    local msg
+    readonly msg="$1"
+    echo -e "[$(date "$LOG_TIMESTAMP_FORMAT")]\tINFO  $msg" | tee --append "$LOG"
+    return 0
+}
+
+
+err() {
+    local msg
+    readonly msg="$1"
+    echo -e "\n\n    ERROR: $msg\n\n"  # do not pipe to $LOG
+    echo -e "[$(date "$LOG_TIMESTAMP_FORMAT")]\t    ERROR  $msg" | tee --append "$LOG"
 }
 
 trap stop_server SIGINT SIGTERM
@@ -49,12 +67,9 @@ trap stop_server SIGINT SIGTERM
 
 wait_for_db
 
-cd "$(dirname -- "$MM_EXEC")" || fail "unable to cd to mattermost bin"
+cd "$(dirname -- "$MM_EXEC")" || fail "unable to cd to mattermost bin location"
 sleep 2  # Wait to avoid "panic: Failed to open sql connection pq: the database system is starting up"
-{
-    echo '----------------------------------------'
-    printf -- '--> launching mattermost at [%s]\n' "$(date)"
-} >> "$LOG"
+log '--> launching mattermost'
 exec "$MM_EXEC" >> "$LOG" 2>&1
 
 exit 0

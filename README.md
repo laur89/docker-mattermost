@@ -43,7 +43,6 @@ match the one you used when creating the db table & user above)
       -e DB_PASSWORD=mm_db_password \
       -e DB_NAME=mattermost \
       -e PUBLIC_LINK_SALT=OVERRIDE_ME \
-      -e INVITE_SALT=OVERRIDE_ME \
       -e AT_REST_ENCRYPT_KEY=OVERRIDE_ME \
       -v /path/on/host/to-data-dir:/mattermost \
       --link db \
