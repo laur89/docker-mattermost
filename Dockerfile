@@ -6,15 +6,15 @@ MAINTAINER    Laur
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update 
-RUN apt-get install --no-install-recommends -y \
+RUN apt-get update && \
+    apt-get install --no-install-recommends -y \
         curl \
         netcat \
-        unattended-upgrades
-RUN update-locale LANG=C.UTF-8
+        unattended-upgrades && \
+    update-locale LANG=C.UTF-8
 
 
-RUN curl https://releases.mattermost.com/3.6.2/mattermost-team-3.6.2-linux-amd64.tar.gz | tar -xvz
+RUN curl https://releases.mattermost.com/5.27.0/mattermost-team-5.27.0-linux-amd64.tar.gz | tar -xvz
 RUN mv /mattermost /opt/
 RUN rm /opt/mattermost/config/config.json
 RUN ln -s /mattermost/config/config.json /opt/mattermost/config/config.json

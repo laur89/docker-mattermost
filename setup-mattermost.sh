@@ -18,7 +18,6 @@ validate() {
     for i in \
             PUBLIC_LINK_SALT \
             INVITE_SALT \
-            PWD_RESET_SALT \
             AT_REST_ENCRYPT_KEY \
                 ; do
         val="$(eval echo "\$$i")"
@@ -26,7 +25,7 @@ validate() {
     done
 
     for i in \
-            nc \
+            nc pgrep \
                 ; do
         command -v "$i" > /dev/null 2>&1 || fail "[$i] not installed"
     done
@@ -47,7 +46,6 @@ setup_config() {
 
     sed -Ei "s/PUBLIC_LINK_SALT/$PUBLIC_LINK_SALT/" "$CONFIG" || fail
     sed -Ei "s/INVITE_SALT/$INVITE_SALT/" "$CONFIG" || fail
-    sed -Ei "s/PWD_RESET_SALT/$PWD_RESET_SALT/" "$CONFIG" || fail
     sed -Ei "s/AT_REST_ENCRYPT_KEY/$AT_REST_ENCRYPT_KEY/" "$CONFIG" || fail
 }
 
