@@ -1,4 +1,4 @@
-FROM        phusion/baseimage
+FROM phusion/baseimage:master-amd64
 MAINTAINER    Laur
 # https://github.com/mattermost/mattermost-docker/
 # https://docs.mattermost.com/install/prod-debian.html
