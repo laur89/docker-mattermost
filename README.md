@@ -24,7 +24,7 @@ Note you need to link mattermost docker to the mariadb/mysql docker by `--link`i
 
 ### Mattermost
 
-The embedded `setup-mattermost` script is executed when running the image for the
+The embedded `setup-mattermost.sh` script is executed when running the image for the
 first time, which configures mattermost with the values you provide.
 If you're using this docker on unraid, this means running the `docker run` command
 below from command line, not from template.
@@ -46,7 +46,7 @@ match the one you used when creating the db table & user above)
       -e AT_REST_ENCRYPT_KEY=OVERRIDE_ME \
       -v /path/on/host/to-data-dir:/mattermost \
       --link db \
-      layr/mattermost -- setup-mattermost
+      layr/mattermost setup-mattermost.sh
 
 ## Running
 
