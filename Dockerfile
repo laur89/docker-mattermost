@@ -28,9 +28,9 @@ RUN apk add --no-cache \
     mv /mattermost /opt/ && \
     rm /opt/mattermost/config/config.json && \
     ln -s /mattermost/config/config.json /opt/mattermost/config/config.json && \
-  rm -rf /tmp/*
+  rm -rf /tmp/* /var/cache/apk/*
 
-COPY config.template.json /
+COPY config.template.json  /
 ADD setup-mattermost.sh entrypoint.sh mattermost.sh  /usr/local/sbin/
 
 #Healthcheck to make sure container is ready
