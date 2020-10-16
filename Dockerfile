@@ -7,7 +7,8 @@ MAINTAINER    Laur
 #   https://docs.mattermost.com/install/prod-debian.html
 #   https://docs.mattermost.com/install/install-ubuntu-1604.html
 
-ENV LANG=C.UTF-8
+ENV LANG=C.UTF-8 \
+    MATTERMOST_VER=5.28.0
 
 RUN apk add --no-cache \
   ca-certificates \
@@ -24,7 +25,7 @@ RUN apk add --no-cache \
   grep \
   bash && \
 # Get Mattermost
-    curl https://releases.mattermost.com/5.27.0/mattermost-team-5.27.0-linux-amd64.tar.gz | tar -xvz && \
+    curl https://releases.mattermost.com/$MATTERMOST_VER/mattermost-team-$MATTERMOST_VER-linux-amd64.tar.gz | tar -xvz && \
     mv /mattermost /opt/ && \
     rm /opt/mattermost/config/config.json && \
     ln -s /mattermost/config/config.json /opt/mattermost/config/config.json && \

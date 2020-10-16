@@ -7,7 +7,7 @@ readonly MM_EXEC=${MM_EXEC:-/opt/mattermost/bin/mattermost}
 
 
 wait_for_db() {
-    local db_host_and_port db_host db_port
+    local db_host_and_port db_host db_port messaged
 
     db_host_and_port="$(jq -r '.SqlSettings.DataSource' "$MM_CONFIG")" || fail "extracting db data from config file [$MM_CONFIG] failed"
     [[ -z "$db_host_and_port" || "$db_host_and_port" == null ]] && fail "sql connection not set: [$db_host_and_port]"
@@ -19,8 +19,8 @@ wait_for_db() {
     IFS=':' read -r db_host db_port <<< "$db_host_and_port"
     [[ -n "$db_host" && "$db_port" =~ ^[0-9]+$ ]] || fail "couldn't parse db hostname and/or port: host: [$db_host], port: [$db_port]"
 
-    log "Wait until database [$db_host:$db_port] is ready..."
     until nc -z "$db_host" "$db_port"; do
+        [[ "$messaged" -ne 1 ]] && echo "Waiting until db @ [$db_host:$db_port] is responding..." && messaged=1
         sleep 2
     done
 
