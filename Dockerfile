@@ -8,7 +8,7 @@ MAINTAINER    Laur
 #   https://docs.mattermost.com/install/install-ubuntu-1604.html
 
 ENV LANG=C.UTF-8 \
-    MATTERMOST_VER=5.28.0
+    MATTERMOST_VER=5.37.9
 
 RUN apk add --no-cache \
   ca-certificates \
