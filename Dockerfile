@@ -1,9 +1,9 @@
-FROM alpine:3.12
+FROM alpine:3.16
 MAINTAINER    Laur
 
 # majority config in this Dockerfile taken from https://github.com/mattermost/mattermost-server/blob/master/build/Dockerfile
 # see also:
-#   https://github.com/mattermost/mattermost-docker/
+#   https://github.com/mattermost/mattermost-docker/ - archived repo
 #   https://docs.mattermost.com/install/prod-debian.html
 #   https://docs.mattermost.com/install/install-ubuntu-1604.html
 
@@ -20,11 +20,15 @@ RUN apk add --no-cache \
   netcat-openbsd \
   xmlsec-dev \
   tzdata \
+  wv \
+  poppler-utils \
+  tidyhtml \
 # following packages are added extra by maintainer:
   jq \
   grep \
   bash && \
 # Get Mattermost
+    #mkdir -p /mattermost/data /mattermost/plugins /mattermost/client/plugins && \ <- handled by our setup script
     curl https://releases.mattermost.com/$MATTERMOST_VER/mattermost-team-$MATTERMOST_VER-linux-amd64.tar.gz | tar -xvz && \
     mv /mattermost /opt/ && \
     rm /opt/mattermost/config/config.json && \

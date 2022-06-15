@@ -63,3 +63,9 @@ variable `AUTOSTART=true` is set.** A reasonable docker command would be
       layr/mattermost
 
 For unraid users: this is the command that should to be converted into a Docker template.
+
+## Upgrading
+
+- [Mattermost changelog](https://docs.mattermost.com/install/self-managed-changelog.html)
+- [Mattermost important upgrade notes](https://docs.mattermost.com/upgrade/important-upgrade-notes.html) - this is great resource!
+
