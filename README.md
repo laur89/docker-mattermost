@@ -70,6 +70,8 @@ For unraid users: this is the command that should to be converted into a Docker 
 - [Mattermost changelog](https://docs.mattermost.com/install/self-managed-changelog.html)
 - [Mattermost important upgrade notes](https://docs.mattermost.com/upgrade/important-upgrade-notes.html) - this is great resource!
 
+- note it's likely safer to track [Extended Support Release](https://docs.mattermost.com/upgrade/extended-support-release.html) versions;
+
 In practical terms, follow the important-upgrade notes.
 Verify Dockerfile is up-to-date (ie you have needed deps installed), and just run the
 container that has newer version of mattermost.
