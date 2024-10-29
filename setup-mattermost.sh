@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# https://docs.mattermost.com/install/prod-debian.html
+# https://docs.mattermost.com/install/install-ubuntu.html
 #
 
 readonly CONFIG='/mattermost/config/config.json'
