@@ -66,6 +66,7 @@ For unraid users: this is the command that should to be converted into a Docker 
 
 ## Upgrading
 
+- [Version archive](https://docs.mattermost.com/about/version-archive.html)
 - [Mattermost upgrade notes](https://docs.mattermost.com/upgrade/upgrading-mattermost-server.html)
   - in that page deffo read [best practices](https://docs.mattermost.com/upgrade/prepare-to-upgrade-mattermost.html#upgrade-best-practices)
 - [Mattermost important upgrade notes](https://docs.mattermost.com/upgrade/important-upgrade-notes.html) - this is great resource!

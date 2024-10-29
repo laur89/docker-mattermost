@@ -1,4 +1,4 @@
-FROM alpine:3.16
+FROM alpine:3
 MAINTAINER    Laur
 
 # majority config in this Dockerfile taken from https://github.com/mattermost/mattermost-server/blob/master/build/Dockerfile
@@ -8,7 +8,7 @@ MAINTAINER    Laur
 #   https://docs.mattermost.com/install/install-ubuntu-1604.html
 
 ENV LANG=C.UTF-8 \
-    MATTERMOST_VER=6.7.2
+    MATTERMOST_VER=7.10.5
 
 RUN apk add --no-cache \
   ca-certificates \
