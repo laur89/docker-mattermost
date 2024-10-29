@@ -67,14 +67,17 @@ For unraid users: this is the command that should to be converted into a Docker 
 ## Upgrading
 
 - [Mattermost upgrade notes](https://docs.mattermost.com/upgrade/upgrading-mattermost-server.html)
-- [Mattermost changelog](https://docs.mattermost.com/install/self-managed-changelog.html)
+  - in that page deffo read [best practices](https://docs.mattermost.com/upgrade/prepare-to-upgrade-mattermost.html#upgrade-best-practices)
 - [Mattermost important upgrade notes](https://docs.mattermost.com/upgrade/important-upgrade-notes.html) - this is great resource!
+- [Mattermost changelog/releases](https://docs.mattermost.com/about/mattermost-server-releases.html)
 
 - note it's likely safer to track [Extended Support Release](https://docs.mattermost.com/upgrade/extended-support-release.html) versions;
+  - as of 2024 that documentation note has a tag `Available only on Enterprise plans`
+    so guess ESR releases are no longer a thing for the free tier
 
-In practical terms, follow the important-upgrade notes.
-Verify Dockerfile is up-to-date (ie you have needed deps installed), and just run the
-container that has newer version of mattermost.
+In practical terms, follow the `important-upgrade` notes.
+Verify Dockerfile is up-to-date (ie you have needed deps installed (see [mmost gh](https://github.com/mattermost/docker))),
+and just run the container that has newer version of mattermost.
 Keep eye on the logs: `/mattermost/logs/mattermost.log`
 
 
