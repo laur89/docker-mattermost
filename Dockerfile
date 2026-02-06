@@ -1,11 +1,14 @@
 FROM alpine:3
 MAINTAINER    Laur
 
-# majority config in this Dockerfile taken from https://github.com/mattermost/mattermost-server/blob/master/build/Dockerfile
+# majority config in this Dockerfile taken from https://github.com/mattermost/mattermost/blob/master/server/build/Dockerfile
+# note the upstream Dockerfile used to be based off alpine, but was migrated to debian/ubuntu stack w/ https://github.com/mattermost/mattermost/commit/efed80a90c8c83ca115df3208059645a5a046e19
+#
 # see also:
 #   https://github.com/mattermost/mattermost-docker/ - archived repo
-#   https://docs.mattermost.com/install/prod-debian.html
-#   https://docs.mattermost.com/install/install-ubuntu-1604.html
+#   https://docs.mattermost.com/install/prod-debian.html - link dead
+#   https://docs.mattermost.com/install/install-ubuntu.html
+#   https://github.com/mattermost/mattermost-docker-preview
 
 ENV LANG=C.UTF-8 \
     MATTERMOST_VER=7.10.5

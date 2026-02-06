@@ -71,14 +71,17 @@ For unraid users: this is the command that should to be converted into a Docker 
   - in that page deffo read [best practices](https://docs.mattermost.com/upgrade/prepare-to-upgrade-mattermost.html#upgrade-best-practices)
 - [Mattermost important upgrade notes](https://docs.mattermost.com/upgrade/important-upgrade-notes.html) - this is great resource!
 - [Mattermost changelog/releases](https://docs.mattermost.com/about/mattermost-server-releases.html)
+- [Unsupported Legacy Releases](https://docs.mattermost.com/about/unsupported-legacy-releases.html)
+  - great resource for deprecated/added config items
 
 - note it's likely safer to track [Extended Support Release](https://docs.mattermost.com/upgrade/extended-support-release.html) versions;
-  - as of 2024 that documentation note has a tag `Available only on Enterprise plans`
-    so guess ESR releases are no longer a thing for the free tier
+  - in fact, according to [this](https://forum.mattermost.com/t/6-7-2-7-10-5-migration-error-messages/21102/2)
+    or [this post](https://forum.mattermost.com/t/bitnami-mattermost-upgrade-issue-version-7-4/21068/4),
+    upgrades should be done ESR -> ESR version
 
 In practical terms, follow the `important-upgrade` notes.
-Verify Dockerfile is up-to-date (ie you have needed deps installed (see [mmost gh](https://github.com/mattermost/docker))),
-and just run the container that has newer version of mattermost.
-Keep eye on the logs: `/mattermost/logs/mattermost.log`
+Verify Dockerfile is up-to-date (ie you have needed deps installed (see [mmost gh](https://github.com/mattermost/mattermost/blob/master/server/build/Dockerfile))),
+and just run the container that has newer version of mattermost included.
+Keep eye on the logs: `/mattermost/logs/mattermost.log`!
 
 
